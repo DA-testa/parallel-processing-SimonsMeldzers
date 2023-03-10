@@ -11,8 +11,13 @@ def parallel_processing(n, m, data):
 
 
     for i in range(m):
-        start, index = min(threads)
         time = data[i]
+        start, thread = min(threads)
+        output.append((thread, start))
+
+        starts[thread] += time
+        threads[thread] = (starts[thread], thread)
+        
         
     return output
 
@@ -25,6 +30,8 @@ def main():
 
     result = parallel_processing(n,m,data)
     
+    for thread, start in result:
+        print(thread, start)
 
 
 
